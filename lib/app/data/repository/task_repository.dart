@@ -1,3 +1,4 @@
+import 'package:four_todo/app/data/model/task_model.dart';
 import 'package:four_todo/app/data/source/local/app_database.dart';
 import 'package:four_todo/app/module/entity/task.dart';
 import 'package:four_todo/app/module/repository/task_repository.dart';
@@ -26,5 +27,11 @@ class TaskRepositoryImpl extends TaskRepository {
             []);
 
     return streamOfHistoryEntities;
+  }
+
+  @override
+  Future<void> insert(TaskEntity param) async {
+    final dataInsert = TaskModel.fromJson(param.toJson());
+    return _appDatabase.taskDao.Insert(dataInsert);
   }
 }

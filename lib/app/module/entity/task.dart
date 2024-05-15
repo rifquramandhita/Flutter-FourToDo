@@ -6,13 +6,13 @@ part 'task.freezed.dart';
 @freezed
 sealed class Task with _$Task{
   factory Task.entity({
-    required int id,
+    int? id,
     required String name,
     String? description,
     required String  date,
     required String start,
     required String end,
-    required bool isDone
+    @Default(false) bool isDone
   }) = TaskEntity;
 
   factory Task.fromJson(Map<String, Object?> json) => _$TaskFromJson(json);

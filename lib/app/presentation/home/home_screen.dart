@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:four_todo/app/presentation/input/input_screen.dart';
 import 'package:four_todo/app/presentation/home/home_notifier.dart';
 import 'package:four_todo/core/helper/global_helper.dart';
 import 'package:four_todo/core/icon/app_icon_icons.dart';
@@ -163,5 +164,11 @@ class HomeScreen extends AppScreen<HomeNotifier> {
     );
   }
 
-  _onPressAddButton(BuildContext context) {}
+  _onPressAddButton(BuildContext context) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => InputScreen(),
+        ));
+  }
 }
