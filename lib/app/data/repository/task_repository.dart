@@ -34,4 +34,25 @@ class TaskRepositoryImpl extends TaskRepository {
     final dataInsert = TaskModel.fromJson(param.toJson());
     return _appDatabase.taskDao.Insert(dataInsert);
   }
+
+  @override
+  Stream<List<TaskEntity>> getByDate(String date) {
+    final streamOfTaskModels = _appDatabase.taskDao.getByDate(date);
+
+  final streamOfHistoryEntities = streamOfTaskModels.map(
+          (listOfHistoryModels) =>
+      listOfHistoryModels
+          ?.map((item) => TaskEntity(
+          id: item.id,
+          name: item.name,
+          description: item.description,
+          date: item.date,
+          start: item.start,
+          end: item.end,
+          isDone: item.isDone))
+          .toList() ??
+          []);
+
+  return streamOfHistoryEntities;
+  }
 }

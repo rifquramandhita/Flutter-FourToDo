@@ -6,6 +6,9 @@ abstract class TaskDao{
   @Query("SELECT * FROM task")
   Stream<List<TaskModel>?> getAll();
 
+  @Query("SELECT * FROM task WHERE date =:date")
+  Stream<List<TaskModel>?> getByDate(String date);
+
   @insert
   Future<void> Insert(TaskModel taskModel);
 }

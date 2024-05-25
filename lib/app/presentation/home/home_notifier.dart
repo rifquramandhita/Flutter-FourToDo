@@ -2,12 +2,13 @@ import 'dart:async';
 
 import 'package:four_todo/app/module/entity/task.dart';
 import 'package:four_todo/app/module/usecase/task_get_all.dart';
+import 'package:four_todo/app/module/usecase/task_get_today.dart';
 import 'package:four_todo/core/provider/app_provider.dart';
 
 class HomeNotifier extends AppProvider {
-  final TaskGetAllUseCase _taskGetAllUseCase;
+  final TaskGetTodayUseCase _taskGetTodayUseCase;
 
-  HomeNotifier(this._taskGetAllUseCase) {
+  HomeNotifier(this._taskGetTodayUseCase) {
     init();
   }
 
@@ -30,7 +31,7 @@ class HomeNotifier extends AppProvider {
   }
 
   _openStreamTask() {
-    _streamListTask = _taskGetAllUseCase().listen((value) {
+    _streamListTask = _taskGetTodayUseCase().listen((value) {
       if (!isDispose) {
         _listTask = value;
         notifyListeners();
